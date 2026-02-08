@@ -5,6 +5,8 @@ import pandas as pd
 from pydantic import BaseModel
 import shap
 import traceback
+import os
+from pathlib import Path
 
 # Pipeline dependencies
 from sklearn.pipeline import Pipeline
@@ -13,7 +15,11 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler
 from sklearn.impute import SimpleImputer
 from xgboost import XGBClassifier
 
-pipeline = joblib.load('E:/Credit-Risk-Scoring/models/credit_risk_pipeline.pkl')
+# Get the base directory (project root)
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / 'models' / 'credit_risk_pipeline.pkl'
+
+pipeline = joblib.load(MODEL_PATH)
 
 # Get the model from pipeline - it might be named 'classifier' or be the last step
 try:
@@ -27,9 +33,12 @@ explainer = shap.TreeExplainer(model)
 app = fa(title='Credit Risk Scoring')
 
 # Add CORS middleware
+# Get allowed origins from environment variable or use defaults
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

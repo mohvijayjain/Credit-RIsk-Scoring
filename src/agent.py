@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Get API URL from environment variable or use default
+API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
+
 llm = ChatGoogleGenerativeAI(
     model="gemini-flash-latest",
     temperature=0,
@@ -43,7 +46,7 @@ def calculate_credit_risk(
     Returns:
         Dictionary with probability, decision, and top risk factors
     """
-    url = "http://127.0.0.1:8000/predict"
+    url = f"{API_BASE_URL}/predict"
     
     payload = {
         "person_age": person_age,
@@ -66,7 +69,7 @@ def calculate_credit_risk(
             return {"error": f"API returned status {response.status_code}: {response.text}"}
         return response.json()
     except requests.exceptions.ConnectionError:
-        return {"error": "Cannot connect to API. Make sure the FastAPI server is running on http://127.0.0.1:8000"}
+        return {"error": f"Cannot connect to API. Make sure the FastAPI server is running on {API_BASE_URL}"}
     except Exception as e:
         return {"error": str(e)}
 

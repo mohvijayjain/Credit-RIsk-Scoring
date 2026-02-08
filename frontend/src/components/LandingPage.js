@@ -48,7 +48,9 @@ function LandingPage() {
     setResult(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/predict', formData);
+      // Use environment variable for API URL or fallback to localhost
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
+      const response = await axios.post(`${apiUrl}/predict`, formData);
       setResult(response.data);
       setActiveSection('results');
     } catch (err) {

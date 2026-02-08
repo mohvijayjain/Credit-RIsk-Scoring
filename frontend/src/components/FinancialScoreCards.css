@@ -1,0 +1,406 @@
+/* Financial Score Cards - Light Professional Theme */
+.financial-scores-section {
+  padding: 5rem 2rem;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.scores-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.scores-caption {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.scores-caption::before,
+.scores-caption::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-blue));
+}
+
+.scores-caption::before {
+  left: -20px;
+}
+
+.scores-caption::after {
+  right: -20px;
+  background: linear-gradient(90deg, var(--primary-blue), transparent);
+}
+
+.scores-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: -0.5px;
+  margin: 0 0 1rem;
+}
+
+.scores-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-gray);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Scores Grid */
+.scores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Liquid Glass Card */
+.liquid-card {
+  position: relative;
+  background: rgba(248, 249, 250, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  animation: cardAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.3s ease;
+}
+
+.liquid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(26, 115, 232, 0.12);
+  border-color: rgba(26, 115, 232, 0.3);
+}
+
+@keyframes cardAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.liquid-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 115, 232, 0.08) 0%,
+    transparent 50%,
+    rgba(26, 115, 232, 0.03) 100%
+  );
+  pointer-events: none;
+}
+
+.liquid-card:nth-child(1) {
+  border-radius: 24px 12px 24px 12px;
+}
+
+.liquid-card:nth-child(2) {
+  border-radius: 12px 24px 12px 24px;
+}
+
+.liquid-card:nth-child(3) {
+  border-radius: 18px 18px 12px 12px;
+}
+
+.card-glass-effect {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.card-content {
+  position: relative;
+  padding: 2.5rem;
+  z-index: 1;
+}
+
+/* Score Header */
+.score-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  animation: slideUp 0.8s ease forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.score-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.strength-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: badgeAppear 0.5s ease forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@keyframes badgeAppear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.badge-weak {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-moderate {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-strong {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Score Visual */
+.score-visual {
+  position: relative;
+  margin-bottom: 1.5rem;
+  animation: slideUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.score-circle {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.circle-bg {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+/* Score Display */
+.score-display {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.score-value {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  height: 3.5rem;
+  overflow: hidden;
+}
+
+.digit {
+  display: inline-block;
+  animation: digitSlide 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+@keyframes digitSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.digit-placeholder {
+  color: var(--text-gray);
+}
+
+.score-label {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.3rem;
+}
+
+/* Score Description */
+.score-description {
+  text-align: center;
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  min-height: 4.5rem;
+  animation: slideUp 0.8s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+/* Score Button */
+.score-button {
+  width: 100%;
+  height: 56px;
+  position: relative;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  animation: slideUp 0.8s ease forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+  transition: transform 0.3s ease;
+}
+
+.score-button:hover {
+  transform: scale(1.02);
+}
+
+.score-button:active {
+  transform: scale(0.98);
+}
+
+.button-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(26, 115, 232, 0.15) 0%, rgba(26, 115, 232, 0.05) 100%);
+  border: 1px solid rgba(26, 115, 232, 0.3);
+  box-shadow: 
+    0 0 20px rgba(26, 115, 232, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.score-button:hover .button-bg {
+  background: linear-gradient(135deg, rgba(26, 115, 232, 0.25) 0%, rgba(26, 115, 232, 0.1) 100%);
+  border-color: rgba(26, 115, 232, 0.5);
+  box-shadow: 
+    0 0 30px rgba(26, 115, 232, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  letter-spacing: 0.5px;
+}
+
+/* Hover Effects on Cards */
+.liquid-card:hover {
+  border-color: rgba(26, 115, 232, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(60, 64, 67, 0.08),
+    0 0 60px rgba(26, 115, 232, 0.1);
+}
+
+.liquid-card:nth-child(1):hover {
+  transform: translateY(-8px) rotate(0.5deg);
+}
+
+.liquid-card:nth-child(2):hover {
+  transform: translateY(-10px);
+}
+
+.liquid-card:nth-child(3):hover {
+  transform: translateY(-8px) rotate(-0.5deg);
+}
+
+.liquid-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .scores-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .liquid-card:nth-child(3) {
+    grid-column: span 2;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .financial-scores-section {
+    padding: 3rem 0;
+  }
+  
+  .scores-title {
+    font-size: 1.8rem;
+  }
+  
+  .scores-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  
+  .liquid-card:nth-child(3) {
+    grid-column: span 1;
+    max-width: none;
+  }
+  
+  .liquid-card,
+  .liquid-card:nth-child(1),
+  .liquid-card:nth-child(2),
+  .liquid-card:nth-child(3) {
+    border-radius: 16px;
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+  
+  .score-value {
+    font-size: 2.2rem;
+  }
+}
